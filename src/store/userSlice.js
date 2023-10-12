@@ -6,7 +6,7 @@ const initialState = {
     nickname: "",
     name: "",
     birth: "",
-  }, //user entity
+  },
   isAuth: false, //user is authenticated
   isLoading: false,
   error: "",
