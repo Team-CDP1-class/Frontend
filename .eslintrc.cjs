@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "prettier", "plugin:prettier/recommended"],
+  extends: ["eslint:recommended", "plugin:react/recommended", "prettier", "plugin:prettier/recommended", "react-app"],
   overrides: [
     {
       env: {
@@ -29,4 +29,12 @@ module.exports = {
       version: "detect",
     },
   },
+  overrides: [
+    {
+      files: ["*-test.js", "*.spec.js"],
+      rules: {
+        "no-unused-expressions": "off",
+      },
+    },
+  ],
 };
