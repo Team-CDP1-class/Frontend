@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* basic setting */
+:root {
+    color-scheme: light;
+    font-weight: 400;
+    color: theme('colors.myColors.basic');
+    background-color: white;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+@layer base {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    p {
+        font-size: theme('fontSize.small');
+    }
+    h2 {
+        font-size: theme('fontSize.medium');
+        font-weight: 600;
+    }
+    h1 {
+        font-size: theme('fontSize.large');
+        font-weight: 600;
+    }
+}
+
+@layer components {
+    /* navbar */
+    .navbar {
+        position: fixed;
+        width: 100%;
+        height: auto;
+        outline: 1px solid #D9D9D9;
+        padding: 0 1rem;
+        background: white;
+    }
+    .navbarMenu {
+        width: auto;
+        margin: 1rem;
+    }
+    .navbarMenu:hover {
+        color:#479CFF;
+    }
+
+    /* footer */
+    .footer {
+        width: 100%;
+        height: auto;
+        color: white;
+        background: theme('colors.myColors.basic');
+    }
+
+    /* Card Frame */
+    .card {
+        border-radius: theme('borderRadius.basic');
+        border: 1px solid theme('colors.myColors.gray');
+        box-shadow: 4px 4px 4px theme('colors.myColors.shadow');
+        margin: theme('margin.card');
+        padding: theme('padding.cardContent');
+    }
+    .card-bundle {
+        border-radius: theme('borderRadius.basic');
+        border: 1px solid #D9D9D9;
+        margin: theme('margin.card');
+    }
+
+    .card-title {
+        border-bottom: 1px solid #D9D9D9;
+        padding: theme('padding.cardTitle');
+        font-size: theme('fontSize.medium');
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: theme('padding.cardContent');
+    }
+
+    .card-button {
+        width: auto;
+        height: auto;
+        color: white;
+        font-size: theme('fontSize.medium');
+        border-radius: theme('borderRadius.basic');
+        background: theme('colors.myColors.gray');
+    }
+    .card-button:hover {
+        background: theme('colors.myColors.primary');
+    }
+
+    /* input */
+    .input-text {
+        border-radius: theme('borderRadius.basic');
+        border: 1px solid theme('colors.myColors.gray');
+        padding: 0.5rem;
+    }
+
+    /* button */
+    .button-basic {
+        width: auto;
+        height: auto;
+        padding: 0.5rem;
+        border-radius: theme('borderRadius.basic');
+        padding: 0.5rem 1.3rem 0.5rem 1.3rem;
+    }
+}
