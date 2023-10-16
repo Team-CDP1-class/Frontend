@@ -3,18 +3,17 @@ import { Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ElementPage from "./pages/ElementPage";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 
-import "./App.css";
-
 function Layout() {
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="h-screen overflow-auto">
       <Navbar />
-      <main className="mb-auto w-10/12 max-w-4l mx:">
-        <Outlet />
-      </main>
+        <div className='min-h-full mt-14'>
+          <Outlet />
+        </div>
       <Footer />
     </div>
   );
@@ -26,6 +25,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
 
+        <Route path="/element" element={<ElementPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>

@@ -50,5 +50,9 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Team-CDP1-class/Frontend.git",
+  "author": "JYN523 <87629686+JYN523@users.noreply.github.com>",
+  "license": "MIT"
 }
