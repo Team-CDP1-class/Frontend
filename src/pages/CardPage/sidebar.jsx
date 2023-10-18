@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -8,7 +9,9 @@ const SideBar = () => {
     >
       <button className="card-button w-full h-40 bg-myColors-primary">test1</button>
       <button className="card-button w-full h-40 mt-5">test2</button>
-      <button className="card-button w-full h-20 mt-5 text-large font-bold">+</button>
+      <Link to="./postcard">
+        <button className="card-button w-full h-20 mt-5 text-large font-bold">+</button>
+      </Link>
     </div>
   );
 };
