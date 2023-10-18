@@ -7,6 +7,7 @@ import ElementPage from "./pages/ElementPage";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import CardPage from "./pages/CardPage";
+import TreatmentPage from "./pages/TreatmentPage";
 
 function Layout() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/cardpage/*" element={<CardPage />} />
+        <Route path="/treatment" element={<TreatmentPage />} />
       </Route>
     </Routes>
   );
