@@ -10,19 +10,18 @@ const LoginPage = () => {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = ({ email, password }) => {
+    if (!email) {
+      return alert("이메일을 적어주세요");
+    }
+    if (!password) {
+      return alert("비밀번호를 적어주세요");
+    }
     const body = {
       email,
       password,
     };
     //dispatch
     reset();
-  };
-
-  const userEmail = {
-    required: "필수 필드입니다.",
-  };
-  const userPassword = {
-    required: "필수 필드입니다.",
   };
 
   return (
@@ -38,13 +37,8 @@ const LoginPage = () => {
               type="email"
               id="email"
               className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
-              {...register("email", userEmail)}
+              {...register("email")}
             />
-            {errors?.email && (
-              <div>
-                <span className="text-red-500">{errors.email.message}</span>
-              </div>
-            )}
           </div>
 
           <div className="mb-2">
@@ -55,13 +49,8 @@ const LoginPage = () => {
               type="password"
               id="password"
               className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
-              {...register("password", userPassword)}
+              {...register("password")}
             />
-            {errors?.password && (
-              <div>
-                <span className="text-red-500">{errors.password.message}</span>
-              </div>
-            )}
           </div>
 
           <div className="mt-6">
