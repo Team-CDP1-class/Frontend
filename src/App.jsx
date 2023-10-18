@@ -6,14 +6,15 @@ import RegisterPage from "./pages/RegisterPage";
 import ElementPage from "./pages/ElementPage";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import CardPage from "./pages/CardPage";
 
 function Layout() {
   return (
     <div className="h-screen overflow-auto">
       <Navbar />
-        <div className='min-h-full mt-14'>
-          <Outlet />
-        </div>
+      <div className="overflow-auto min-h-full mt-14">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
@@ -28,6 +29,7 @@ function App() {
         <Route path="/element" element={<ElementPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/cardpage/*" element={<CardPage />} />
       </Route>
     </Routes>
   );
