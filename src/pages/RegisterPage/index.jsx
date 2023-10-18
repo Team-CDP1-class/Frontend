@@ -8,12 +8,17 @@ const RegisterPage = () => {
     formState: { errors },
     reset,
   } = useForm({ mode: "onChange" });
-  const onSubmit = ({ email, nickname, password, name }) => {
+
+  const onSubmit = ({ email, nickname, password, confirmpassword, name, birth }) => {
+    if (password !== confirmpassword) {
+      return alert("비밀번호와 비밀번호 확인은 같아야 합니다.");
+    }
     const body = {
       email,
       nickname,
       name,
       password,
+      birth,
     };
 
     reset();
@@ -28,7 +33,17 @@ const RegisterPage = () => {
   const userNickName = {
     required: "필수 필드입니다.",
   };
+  const userBirth = {
+    required: "필수 필드입니다.",
+  };
   const userPassword = {
+    required: "필수 필드입니다.",
+    minLength: {
+      value: 6,
+      message: "최소 6자입니다.",
+    },
+  };
+  const confirmUserPassword = {
     required: "필수 필드입니다.",
     minLength: {
       value: 6,
@@ -38,17 +53,19 @@ const RegisterPage = () => {
 
   return (
     <section className="flex flex-col justify-center mt-20 max-w-[400px] m-auto">
-      <div className="p-6 bg-sky-500/20 rounded-md shadow-md">
+      <div className="border p-6 text-black rounded-md shadow-md">
         <h1 className="text-3xl font-semibold text-center">회원가입</h1>
         <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-2">
-            <label htmlFor="email" className="text-sm font-semibold text-gray-800">
-              Email
+          <div className="mb-2 ">
+            <label htmlFor="email" className="text-sm font-semibold text-gray-800 ">
+              이메일
             </label>
             <input
               type="email"
               id="email"
-              className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
+              className="w-full px-4 py-2 mt-2 bg-white border rounded-md  hover:outline-myColors-primary
+              focus:outline-myColors-primary "
+              placeholder="이메일 주소"
               {...register("email", userEmail)}
             />
             {errors?.email && (
@@ -59,12 +76,13 @@ const RegisterPage = () => {
           </div>
           <div className="mb-2">
             <label htmlFor="name" className="text-sm font-semibold text-gray-800">
-              Name
+              이름
             </label>
             <input
-              type="name"
+              type="text"
               id="name"
               className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
+              placeholder="이름"
               {...register("name", userName)}
             />
             {errors?.name && (
@@ -75,28 +93,30 @@ const RegisterPage = () => {
           </div>
           <div className="mb-2">
             <label htmlFor="nickname" className="text-sm font-semibold text-gray-800">
-              NickName
+              닉네임
             </label>
             <input
-              type="nickname"
+              type="text"
               id="nickname"
               className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
+              placeholder="닉네임"
               {...register("nickname", userNickName)}
             />
-            {errors?.name && (
+            {errors?.nickname && (
               <div>
-                <span className="text-red-500">{errors.name.message}</span>
+                <span className="text-red-500">{errors.nickname.message}</span>
               </div>
             )}
           </div>
           <div className="mb-2">
             <label htmlFor="password" className="text-sm font-semibold text-gray-800">
-              Password
+              비밀번호
             </label>
             <input
               type="password"
               id="password"
               className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
+              placeholder="비밀번호"
               {...register("password", userPassword)}
             />
             {errors?.password && (
@@ -106,10 +126,45 @@ const RegisterPage = () => {
             )}
           </div>
 
+          <div className="mb-2">
+            <label htmlFor="confirmpassword" className="text-sm font-semibold text-gray-800">
+              비밀번호 확인
+            </label>
+            <input
+              type="password"
+              id="confirmpassword"
+              className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
+              placeholder="비밀번호 확인"
+              {...register("confirmpassword", confirmUserPassword)}
+            />
+            {errors?.confirmpassword && (
+              <div>
+                <span className="text-red-500">{errors.confirmpassword.message}</span>
+              </div>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <label htmlFor="birth" className="text-sm font-semibold text-gray-800">
+              생년월일
+            </label>
+            <input
+              type="date"
+              id="birth"
+              className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
+              {...register("birth", userBirth)}
+            />
+            {errors?.birth && (
+              <div>
+                <span className="text-red-500">{errors.birth.message}</span>
+              </div>
+            )}
+          </div>
+
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full px-4 py-2 text-white duration-200 bg-black rounded-md hover:bg-gray-700"
+              className="w-full px-4 py-2 text-white duration-200 bg-myColors-primary rounded-md hover:bg-gray-700"
             >
               회원가입
             </button>
