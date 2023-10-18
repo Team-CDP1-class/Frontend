@@ -7,7 +7,7 @@ export default {
         myColors: {
           basic: '#343434', // 기본 검정 글씨
           primary: '#479CFF', // 포인트 파랑
-          secondary: 'B6D7FF',
+          secondary: '#B6D7FF',
           gray: '#D9D9D9', // 회색
           shadow: '#ececec', // 그림자
           background: '#F9FCFF', // 배경(연파랑)
@@ -27,6 +27,10 @@ export default {
 
       maxWidth: {
         sideMenu: '17rem',
+      },
+
+      width: {
+        mainIntro: '56rem',
       },
 
       padding: {

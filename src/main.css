@@ -58,6 +58,19 @@
         height: auto;
         color: white;
         background: theme('colors.myColors.basic');
+        padding: 2rem 4rem 2rem 4rem;
+        display: flex;
+    }
+    .footerBundle {
+        width: auto;
+        margin: 0 1rem 0 1rem;
+    }
+    .footerMenu {
+        width: auto;
+        color: theme('colors.myColors.gray');
+        font-weight: 200;
+        font-size: 0.8rem;
+        text-align:left;
     }
 
     /* Card Frame */
