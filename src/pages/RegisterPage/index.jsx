@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../store/thunkFunction";
 
 const RegisterPage = () => {
   const {
@@ -9,6 +11,7 @@ const RegisterPage = () => {
     reset,
   } = useForm({ mode: "onChange" });
 
+  const dispatch = useDispatch();
   const onSubmit = ({ email, nickname, password, confirmpassword, name, birth }) => {
     if (password !== confirmpassword) {
       return alert("비밀번호와 비밀번호 확인은 같아야 합니다.");
@@ -21,6 +24,7 @@ const RegisterPage = () => {
       birth,
     };
 
+    dispatch(registerUser(body));
     reset();
   };
 
