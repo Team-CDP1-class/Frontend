@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import MainPage from "./mainPage";
 import SideBar from "./sidebar";
 import PostCardPage from "./postCardPage";
+import ResultPage from "./resultPage";
 
 function Layout() {
   return (
@@ -23,6 +24,7 @@ const CardPage = () => {
         {/* route 중첩 */}
         <Route index element={<MainPage />} />
         <Route path="/postcard" element={<PostCardPage />} />
+        <Route path="/result" element={<ResultPage />} />
       </Route>
     </Routes>
   );
