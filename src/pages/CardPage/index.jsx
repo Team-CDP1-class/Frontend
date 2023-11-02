@@ -6,7 +6,7 @@ import PostCardPage from "./postCardPage";
 import ResultPage from "./resultPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { authUser } from "./store/thunkFunctions";
+import { authUser, getStoryCard, postStoryCard } from "../../store/thunkFunction";
 
 function Layout() {
   return (
@@ -21,20 +21,11 @@ function Layout() {
 
 const CardPage = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.user?.isAuth);
+  const storyCard = useSelector((state) => state.storyCard);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(authUser());
-    }
-  }, [isAuth, pathname, dispatch]);
-
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(authUser());
-    }
-  }, [isAuth, pathname, dispatch]);
+  dispatch(getStoryCard());
+  console.log(storyCard);
   return (
     <Routes>
       {/* 사이드 바 */}

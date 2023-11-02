@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { postStoryCard } from "./thunkFunction";
+import { getStoryCard, postStoryCard } from "./thunkFunction";
 const initialState = {
   storyCardData: {
     storycardname: "",
@@ -27,6 +27,20 @@ const cardStorySlice = createSlice({
         toast.info("해석 성공");
       })
       .addCase(postStoryCard.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(getStoryCard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getStoryCard.fulfilled, (state) => {
+        state.isLoading = false;
+        state.storyCardData = state;
+        console.log(state);
+        toast.info("가져오기 성공");
+      })
+      .addCase(getStoryCard.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
         toast.error(action.payload);

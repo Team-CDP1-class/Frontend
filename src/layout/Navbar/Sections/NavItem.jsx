@@ -21,7 +21,7 @@ const NavItem = () => {
   };
 
   return (
-    <ul className={`text-md justify-center w-full flex `}>
+    <ul className={`text-md justify-center w-full flex items-center`}>
       {routes.map(({ to, name, auth }) => {
         if (isAuth !== auth) return null;
 
