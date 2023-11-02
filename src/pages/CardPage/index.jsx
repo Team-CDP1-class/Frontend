@@ -1,9 +1,12 @@
-import { Outlet, Routes } from "react-router-dom";
+import { Outlet, Routes, useLocation } from "react-router-dom";
 import { Route } from "react-router-dom";
 import MainPage from "./mainPage";
 import SideBar from "./sidebar";
 import PostCardPage from "./postCardPage";
 import ResultPage from "./resultPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { authUser } from "./store/thunkFunctions";
 
 function Layout() {
   return (
@@ -17,6 +20,21 @@ function Layout() {
 }
 
 const CardPage = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.user?.isAuth);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(authUser());
+    }
+  }, [isAuth, pathname, dispatch]);
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(authUser());
+    }
+  }, [isAuth, pathname, dispatch]);
   return (
     <Routes>
       {/* 사이드 바 */}

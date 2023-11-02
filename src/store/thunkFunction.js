@@ -31,7 +31,15 @@ export const logoutUser = createAsyncThunk("user/logoutUser", async (_, thunkAPI
     return thunkAPI.rejectWithValue(error.response.data || error.message);
   }
 });
-
+export const authUser = createAsyncThunk("user/authUser", async (_, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get(`/users/auth`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return thunkAPI.rejectWithValue(error.response.data || error.message);
+  }
+});
 export const postStoryCard = createAsyncThunk("storyCard/postStoryCard", async (body, thunkAPI) => {
   try {
     const response = await axiosInstance.post(`/storycards`, body);
