@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser } from "../../../store/thunkFunction/logoutUser";
+import { logoutUser } from "../../../store/thunkFunction";
 
 const routes = [
   { to: "/login", name: "로그인", auth: false },
