@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+import NavItem from "./Sections/NavItem";
 
 const Navbar = () => {
   return (
@@ -14,11 +15,7 @@ const Navbar = () => {
       <Link to="./treatment">
         <button className="navbarMenu float-left">스토리 전개 분석</button>
       </Link>
-      <button className="navbarMenu float-right">
-        <a href="/login" className="font-medium ">
-          회원가입/로그인
-        </a>
-      </button>
+      <NavItem />
     </div>
   );
 };

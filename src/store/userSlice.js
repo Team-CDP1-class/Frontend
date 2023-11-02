@@ -45,6 +45,21 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
         toast.error(action.payload);
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userData = initialState.userData;
+        toast.info("로그아웃 성공함");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error(action.payload);
       });
   },
 });
