@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./thunkFunction";
+import { loginUser, logoutUser, registerUser } from "./thunkFunction";
 import { toast } from "react-toastify";
 const initialState = {
   userData: {
