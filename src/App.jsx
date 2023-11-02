@@ -9,6 +9,7 @@ import Footer from "./layout/Footer";
 import CardPage from "./pages/CardPage";
 import TreatmentPage from "./pages/TreatmentPage";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout() {
   return (
