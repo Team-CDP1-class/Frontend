@@ -8,6 +8,7 @@ import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import CardPage from "./pages/CardPage";
 import TreatmentPage from "./pages/TreatmentPage";
+import { ToastContainer } from "react-toastify";
 
 function Layout() {
   return (
