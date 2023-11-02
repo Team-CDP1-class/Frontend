@@ -8,10 +8,13 @@ import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import CardPage from "./pages/CardPage";
 import TreatmentPage from "./pages/TreatmentPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout() {
   return (
     <div className="h-screen overflow-auto">
+      <ToastContainer position="bottom-right" theme="light" pauseOnHover autoClose={1500} />
       <Navbar />
       <div className="overflow-auto min-h-full mt-14">
         <Outlet />
