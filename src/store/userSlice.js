@@ -36,6 +36,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log(action);
         state.userData = action.payload;
         toast.info("로그인 성공함");
         state.isAuth = true;
