@@ -4,6 +4,7 @@
 
 /* basic setting */
 :root {
+  min-width : 820px;
   color-scheme: light;
   font-weight: 400;
   color: theme("colors.myColors.basic");
@@ -43,6 +44,7 @@
     outline: 1px solid #d9d9d9;
     padding: 0 1rem;
     background: white;
+    min-width : 820px;
   }
   .navbarMenu {
     width: auto;
