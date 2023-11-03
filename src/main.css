@@ -127,4 +127,15 @@
     border-radius: theme("borderRadius.basic");
     padding: 0.5rem 1.3rem 0.5rem 1.3rem;
   }
+
+  /* Table */
+  table {
+    margin: 100px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th,
+  td {
+    border: 1px solid black;
+  }
 }

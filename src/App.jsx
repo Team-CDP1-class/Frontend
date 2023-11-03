@@ -43,6 +43,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
+        <Route path="/test/*" element={<TreatmentPage />} />
         {/* 로그인한 사람만 갈 수 있는 경로 */}
         <Route element={<ProtectedRoutes isAuth={isAuth} />}>
           <Route path="/element" element={<ElementPage />} />
