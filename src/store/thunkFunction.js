@@ -1,9 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../utils/axios";
-
+// const headers = {
+//   "Content-type": "application/json",
+//   Accept: "*/*",
+//   Authorization: "",
+//   origin: "http://127.0.0.1:3000",
+// };
 export const registerUser = createAsyncThunk("user/registerUser", async (body, thunkAPI) => {
   try {
-    const response = await axiosInstance.post(`/users/register`, body);
+    console.log(body);
+    const response = await axiosInstance.post(`api/users`, body);
+    //const response = await axiosInstance.post(`users/register`, body);
 
     return response.data;
   } catch (error) {
@@ -14,7 +21,9 @@ export const registerUser = createAsyncThunk("user/registerUser", async (body, t
 
 export const loginUser = createAsyncThunk("user/loginUser", async (body, thunkAPI) => {
   try {
-    const response = await axiosInstance.post(`/users/login`, body);
+    // const response = await axiosInstance.post(`api/users/login`, body);
+    const response = await axiosInstance.post(`users/login`, body);
+
     return response.data;
   } catch (error) {
     console.log(error);

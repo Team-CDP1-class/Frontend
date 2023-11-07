@@ -23,6 +23,13 @@ const RegisterPage = () => {
       password,
       birth,
     };
+    // body = {
+    //   email: "test8@knu.ac.kr",
+    //   password: "1234",
+    //   nickname: "헤경",
+    //   name: "송혜경",
+    //   birth: "2002-10-31",
+    // };
 
     dispatch(registerUser(body));
     reset();

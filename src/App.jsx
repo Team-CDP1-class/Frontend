@@ -45,11 +45,16 @@ function App() {
         <Route index element={<LandingPage />} />
         <Route path="/test/*" element={<TreatmentPage />} />
         {/* 로그인한 사람만 갈 수 있는 경로 */}
+        <Route path="/element" element={<ElementPage />} />
+        <Route path="/cardpage/*" element={<CardPage />} />
+        <Route path="/treatment" element={<TreatmentPage />} />
         <Route element={<ProtectedRoutes isAuth={isAuth} />}>
           <Route path="/element" element={<ElementPage />} />
           <Route path="/cardpage/*" element={<CardPage />} />
           <Route path="/treatment" element={<TreatmentPage />} />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         {/* 로그인한 사람은 갈 수 없는 경로 */}
         <Route element={<NotAuthRoutes isAuth={isAuth} />}>
           <Route path="/login" element={<LoginPage />} />
