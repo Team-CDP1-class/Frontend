@@ -33,7 +33,6 @@ function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.user?.isAuth);
   const { pathname } = useLocation();
-  console.log("!");
   useEffect(() => {
     if (isAuth) {
       dispatch(authUser());
@@ -53,8 +52,8 @@ function App() {
           <Route path="/cardpage/*" element={<CardPage />} />
           <Route path="/treatment" element={<TreatmentPage />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        {/* <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} /> */}
         {/* 로그인한 사람은 갈 수 없는 경로 */}
         <Route element={<NotAuthRoutes isAuth={isAuth} />}>
           <Route path="/login" element={<LoginPage />} />
