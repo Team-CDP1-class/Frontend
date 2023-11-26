@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authUser, loginUser, logoutUser, registerUser } from "./thunkFunction";
+import { authUser, getStoryCard, loginUser, logoutUser, registerUser } from "./thunkFunction";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

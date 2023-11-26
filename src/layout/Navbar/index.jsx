@@ -1,9 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavItem from "./Sections/NavItem";
+import { useDispatch, useSelector } from "react-redux";
+
+function cardNav(len) {
+  if(len == 0) {
+    return (
+    <Link to="/cardpage/postcard">
+          <button className="navbarMenu">스토리 카드</button>
+    </Link>
+    );
+  }
+  else {
+    return (
+      <Link to="/cardpage/postcard/0">
+            <button className="navbarMenu">스토리 카드</button>
+      </Link>
+      );
+  }
+
+
+}
 
 const Navbar = () => {
+  const storyCard = useSelector((state) => state.cardStory.storyCardData);
+
   return (
     <div className="flex navbar">
       <div className="float-left">
@@ -12,9 +34,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="float-left">
-        <Link to="./cardpage/postcard">
-          <button className="navbarMenu">스토리 카드</button>
-        </Link>
+        {cardNav(storyCard.length)}
       </div>
       <div className="float-left">
         <Link to="./treatment">

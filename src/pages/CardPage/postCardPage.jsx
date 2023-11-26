@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { editStoryCard, postStoryCard } from "../../store/thunkFunction";
+import { deleteStoryCard, editStoryCard, getStoryCard, postStoryCard } from "../../store/thunkFunction";
 import { useDispatch, useSelector  } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-const PostCardPage = () => {
-  const storyCard = useSelector((state) => state.cardStory.storyCardData);
+const PostCardPage = (props) => {
+  const storyCard = props.storyCard;
+  const len = useSelector((state) => state.cardStory.storyCardData);
   const params = useParams();
+  const navigate = useNavigate();
+  let deleteBtn = [];
 
   const [btn, setBtn] = useState("");
   const {
@@ -18,18 +21,18 @@ const PostCardPage = () => {
 
   const dispatch = useDispatch();
   const handleEdit=()=>{
-    setBtn("Edit")
+    setBtn("Edit");
   }
   const handleReset=()=>{
-    setBtn("Reset")
+    setBtn("Reset");
   }
   const handleDelete=()=>{
-    setBtn("Delete")
+    setBtn("Delete");
   }
   const handleAnalysis=()=>{
-    setBtn("Analysis")
+    setBtn("Analysis");
   }
-  const onSubmit = ({ storycard_name, premise, setting, characters, outline }) => {
+  const onSubmit = async ({ storycard_name, premise, setting, characters, outline }) => {
     const body = {
       storycard_name,
       premise,
@@ -40,7 +43,10 @@ const PostCardPage = () => {
 
     if(btn == "Edit") {
       console.log("Edit");
-      dispatch(editStoryCard(storyCard[params.postId].id, body));
+      let data = {"postId":storyCard.id, "body":body};
+      await dispatch(editStoryCard(data));
+      navigate(`/cardpage/postcard/${params.postId}`);
+      window.location.reload();
     }
     if(btn == "Reset") {
       console.log("Reset");
@@ -48,12 +54,17 @@ const PostCardPage = () => {
     }
     if(btn == "Delete") {
       console.log("Delete");
+      await dispatch(deleteStoryCard(storyCard.id));
+      await dispatch(getStoryCard());
+      if(len.length == 1)
+        navigate('/cardpage/postcard');
+      else
+        navigate('/cardpage/postcard/0');
+      window.location.reload();
     }
     if(btn == "Analysis") {
       console.log("Analysis");
     }
-
-    //dispatch(postStoryCard(body));
   };
 
   return (
@@ -63,7 +74,7 @@ const PostCardPage = () => {
           type="text"
           id="storycard_name"
           placeholder="제목"
-          defaultValue={storyCard[params.postId].storycard_name}
+          defaultValue={storyCard.storycard_name}
           className="w-11/12 mx-6 outline-none text-large font-bold"
           
           {...register("storycard_name")}
@@ -83,7 +94,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
-              defaultValue={storyCard[params.postId].premise}
+              defaultValue={storyCard.premise}
               {...register("premise")}
             />
           </div>
@@ -100,7 +111,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
-              defaultValue={storyCard[params.postId].setting}
+              defaultValue={storyCard.setting}
               {...register("setting")}
             />
           </div>
@@ -116,7 +127,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
-              defaultValue={storyCard[params.postId].characters}
+              defaultValue={storyCard.characters}
               {...register("characters")}
             />
           </div>
@@ -132,7 +143,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
-              defaultValue={storyCard[params.postId].outline}
+              defaultValue={storyCard.outline}
               {...register("outline")}
             />
           </div>
@@ -142,10 +153,11 @@ const PostCardPage = () => {
             <button type="submit"
                     className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary float-left"
                     onClick={handleEdit}>저장</button>
+            {/* <button className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary ml-3 float-left"
+                    onClick={handleReset}>초기화</button> */}
+            
             <button className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary ml-3 float-left"
-                    onClick={handleReset}>초기화</button>
-            <button className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary ml-3 float-left"
-                    onClick={handleDelete}>삭제</button>
+                  onClick={handleDelete}>삭제</button>
             
             <button
               className="button-basic text-white bg-myColors-primary float-right"

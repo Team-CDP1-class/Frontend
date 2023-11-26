@@ -22,7 +22,6 @@ export const loginUser = createAsyncThunk("user/loginUser", async (body, thunkAP
   try {
     const response = await axiosInstance.post(`api/users/login`, body);
     //const response = await axiosInstance.post(`users/login`, body);
-
     return response.data;
   } catch (error) {
     console.log(error);
@@ -56,6 +55,22 @@ export const authUser = createAsyncThunk("user/authUser", async (_, thunkAPI) =>
 });
 export const postStoryCard = createAsyncThunk("storyCard/postStoryCard", async (body, thunkAPI) => {
   try {
+    if(!body.premise){
+      body.premise = "";
+    }
+    if(!body.setting){
+      body.setting = "";
+    }
+    if(!body.characters){
+      body.characters = "";
+    }
+    if(!body.outline){
+      body.outline = "";
+    }
+    if(!body.storycard_name){
+      body.storycard_name = "";
+    }
+    
     const response = await axiosInstance.post(`api/storycard`, body);
     return response.data;
   } catch (error) {
@@ -85,8 +100,27 @@ export const deleteStoryCard = createAsyncThunk("storyCard/deleteStoryCard", asy
   }
 });
 
-export const editStoryCard = createAsyncThunk("storyCard/editStoryCard", async ( storyCardId , body, thunkAPI) => {
+export const editStoryCard = createAsyncThunk("storyCard/editStoryCard", async ( data, thunkAPI) => {
   try {
+    const body = data.body;
+    const storyCardId = data.postId;
+
+    if(!body.premise){
+      body.premise = "";
+    }
+    if(!body.setting){
+      body.setting = "";
+    }
+    if(!body.characters){
+      body.characters = "";
+    }
+    if(!body.outline){
+      body.outline = "";
+    }
+    if(!body.storycard_name){
+      body.storycard_name = "";
+    }
+
     const response = await axiosInstance.patch(`api/storycard/${storyCardId}`, body);
 
     return response.data;

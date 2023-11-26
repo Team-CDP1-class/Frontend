@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../store/thunkFunction";
+import { getStoryCard, loginUser } from "../../store/thunkFunction";
 
 const LoginPage = () => {
   const {
@@ -12,7 +12,7 @@ const LoginPage = () => {
   } = useForm({ mode: "onChange" });
 
   const dispatch = useDispatch();
-  const onSubmit = ({ email, password }) => {
+  const onSubmit = async ({ email, password }) => {
     if (!email) {
       return alert("이메일을 적어주세요");
     }
@@ -23,8 +23,10 @@ const LoginPage = () => {
       email,
       password,
     };
-    dispatch(loginUser(body));
+    await dispatch(loginUser(body));
     reset();
+    
+    dispatch(getStoryCard());
   };
 
   return (
