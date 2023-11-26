@@ -26,9 +26,9 @@ const CardPage = () => {
   const [currentCard, setCurrent] = useState(storyCard);
   const params = useParams();
 
-  useEffect(() => {
-    dispatch(getStoryCard());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getStoryCard());
+  // }, [pathname]);
 
   useEffect(() => {
     if(params['*'] != "postcard") {
