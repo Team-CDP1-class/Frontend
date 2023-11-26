@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { postStoryCard } from "../../store/thunkFunction";
+import { editStoryCard, postStoryCard } from "../../store/thunkFunction";
 import { useDispatch, useSelector  } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 const PostCardPage = () => {
+  const storyCard = useSelector((state) => state.cardStory.storyCardData);
+  const params = useParams();
+
   const [btn, setBtn] = useState("");
   const {
     register,
@@ -37,6 +40,7 @@ const PostCardPage = () => {
 
     if(btn == "Edit") {
       console.log("Edit");
+      dispatch(editStoryCard(storyCard[params.postId].id, body));
     }
     if(btn == "Reset") {
       console.log("Reset");
@@ -47,14 +51,10 @@ const PostCardPage = () => {
     }
     if(btn == "Analysis") {
       console.log("Analysis");
-      dispatch(postStoryCard(body));
     }
 
     //dispatch(postStoryCard(body));
   };
-
-  const storyCard = useSelector((state) => state.cardStory.storyCardData);
-  const params = useParams();
 
   return (
     <form className="m-3" onSubmit={handleSubmit(onSubmit)}>
