@@ -24,9 +24,9 @@ const CardPage = () => {
   const storyCard = useSelector((state) => state.storyCard);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    dispatch(getStoryCard());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getStoryCard());
+  // }, [pathname]);
 
   return (
     <Routes>

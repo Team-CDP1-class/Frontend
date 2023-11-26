@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { deleteStoryCard, editStoryCard, getStoryCard, postStoryCard } from "./thunkFunction";
+import {
+  analysisStoryCard,
+  analysisTreatment,
+  deleteStoryCard,
+  editStoryCard,
+  getStoryCard,
+  postStoryCard,
+} from "./thunkFunction";
 const initialState = {
   storyCardData: {
     storycardname: "",
@@ -67,6 +74,32 @@ const cardStorySlice = createSlice({
       .addCase(editStoryCard.rejected, (state, action) => {
         state.isLoading = false;
         toast.error("세션이 만료되었습니다");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
+      })
+      .addCase(analysisStoryCard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(analysisStoryCard.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.info("post card 분석성공");
+      })
+      .addCase(analysisStoryCard.rejected, (state, action) => {
+        state.isLoading = false;
+        toast.error("분석 실패");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
+      })
+      .addCase(analysisTreatment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(analysisTreatment.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.info("treatment 분석성공");
+      })
+      .addCase(analysisTreatment.rejected, (state, action) => {
+        state.isLoading = false;
+        toast.error("분석 실패");
         state.isAuth = false;
         localStorage.removeItem("accessToken");
       });
