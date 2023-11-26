@@ -1,29 +1,17 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
-  return (
-    <div className="m-3 ">
-      <div className="card">
-        <h1 className="mt-2 mx-6">카드 제목</h1>
+  const navigate = useNavigate();
+  const storyCard = useSelector((state) => state.cardStory.storyCardData);
 
-        <div className="card-bundle">
-          <div className="card-title">
-            <h2>제목1</h2>
-          </div>
-          <div className="card-body">
-            <p>본문</p>
-          </div>
-        </div>
-      </div>
-      <div className="card-bundle">
-        <div className="card-title">
-          <h2>제목1</h2>
-        </div>
-        <div className="card-body">
-          <p>본문</p>
-        </div>
-      </div>
-    </div>
+  if(storyCard.length > 0) 
+    navigate("/cardpage/postcard/1");
+  else
+    return (<div></div>);
+  return (
+    <div></div>
   );
 };
 

@@ -24,15 +24,18 @@ const CardPage = () => {
   const storyCard = useSelector((state) => state.storyCard);
   const { pathname } = useLocation();
 
-  dispatch(getStoryCard());
+  useEffect(() => {
+    dispatch(getStoryCard());
+  }, []);
 
   return (
     <Routes>
       {/* 사이드 바 */}
       <Route path="/" element={<Layout />}>
         {/* route 중첩 */}
-        <Route index element={<MainPage />} />
-        <Route path="/postcard" element={<PostCardPage />} />
+        {/* <Route index element={<MainPage />} /> */}
+        <Route path="/postcard" element={<MainPage />} />
+        <Route path="/postcard/:postId" element={<PostCardPage />} />
         <Route path="/result" element={<ResultPage />} />
       </Route>
     </Routes>

@@ -12,7 +12,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="float-left">
-        <Link to="./cardpage">
+        <Link to="./cardpage/postcard">
           <button className="navbarMenu">스토리 카드</button>
         </Link>
       </div>

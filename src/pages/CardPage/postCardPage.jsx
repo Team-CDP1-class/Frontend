@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { postStoryCard } from "../../store/thunkFunction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector  } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 const PostCardPage = () => {
+  const [btn, setBtn] = useState("");
   const {
     register,
     handleSubmit,
@@ -12,6 +14,18 @@ const PostCardPage = () => {
   } = useForm({ mode: "onChange" });
 
   const dispatch = useDispatch();
+  const handleEdit=()=>{
+    setBtn("Edit")
+  }
+  const handleReset=()=>{
+    setBtn("Reset")
+  }
+  const handleDelete=()=>{
+    setBtn("Delete")
+  }
+  const handleAnalysis=()=>{
+    setBtn("Analysis")
+  }
   const onSubmit = ({ storycard_name, premise, setting, characters, outline }) => {
     const body = {
       storycard_name,
@@ -20,9 +34,27 @@ const PostCardPage = () => {
       characters,
       outline,
     };
-    dispatch(postStoryCard(body));
-    reset();
+
+    if(btn == "Edit") {
+      console.log("Edit");
+    }
+    if(btn == "Reset") {
+      console.log("Reset");
+      reset();
+    }
+    if(btn == "Delete") {
+      console.log("Delete");
+    }
+    if(btn == "Analysis") {
+      console.log("Analysis");
+      dispatch(postStoryCard(body));
+    }
+
+    //dispatch(postStoryCard(body));
   };
+
+  const storyCard = useSelector((state) => state.cardStory.storyCardData);
+  const params = useParams();
 
   return (
     <form className="m-3" onSubmit={handleSubmit(onSubmit)}>
@@ -31,7 +63,9 @@ const PostCardPage = () => {
           type="text"
           id="storycard_name"
           placeholder="제목"
+          defaultValue={storyCard[params.postId].storycard_name}
           className="w-11/12 mx-6 outline-none text-large font-bold"
+          
           {...register("storycard_name")}
         />
       </div>
@@ -49,6 +83,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
+              defaultValue={storyCard[params.postId].premise}
               {...register("premise")}
             />
           </div>
@@ -65,6 +100,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
+              defaultValue={storyCard[params.postId].setting}
               {...register("setting")}
             />
           </div>
@@ -80,6 +116,7 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
+              defaultValue={storyCard[params.postId].characters}
               {...register("characters")}
             />
           </div>
@@ -95,20 +132,27 @@ const PostCardPage = () => {
               className="input-text w-full mt-3
                                 hover:outline-myColors-primary
                                 focus:outline-myColors-primary"
+              defaultValue={storyCard[params.postId].outline}
               {...register("outline")}
             />
           </div>
         </div>
       </div>
-      <div className="mt-6">
-        <button
-          type="submit"
-          className="button-basic text-myColors-primary bg-white
-          border-2 border-myColors-primary mr-6 float-right"
-        >
-          분석하기
-        </button>
-      </div>
+      <div className="mt-6 ml-6 mr-6">
+            <button type="submit"
+                    className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary float-left"
+                    onClick={handleEdit}>저장</button>
+            <button className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary ml-3 float-left"
+                    onClick={handleReset}>초기화</button>
+            <button className="button-basic text-myColors-primary bg-white border-2 border-myColors-primary ml-3 float-left"
+                    onClick={handleDelete}>삭제</button>
+            
+            <button
+              className="button-basic text-white bg-myColors-primary float-right"
+              onClick={handleSubmit}>
+              분석하기
+            </button>
+          </div>
     </form>
   );
 };
