@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { deleteStoryCard, editStoryCard, getStoryCard, postStoryCard } from "../../store/thunkFunction";
+import { analysisStoryCard, deleteStoryCard, editStoryCard, getStoryCard, postStoryCard } from "../../store/thunkFunction";
 import { useDispatch, useSelector  } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -9,6 +9,7 @@ const PostCardPage = (props) => {
   const len = useSelector((state) => state.cardStory.storyCardData);
   const params = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let deleteBtn = [];
 
   const [btn, setBtn] = useState("");
@@ -18,8 +19,6 @@ const PostCardPage = (props) => {
     formState: { errors },
     reset,
   } = useForm({ mode: "onChange" });
-
-  const dispatch = useDispatch();
   const handleEdit=()=>{
     setBtn("Edit");
   }
@@ -45,6 +44,7 @@ const PostCardPage = (props) => {
       console.log("Edit");
       let data = {"postId":storyCard.id, "body":body};
       await dispatch(editStoryCard(data));
+      await dispatch(getStoryCard());
       navigate(`/cardpage/postcard/${params.postId}`);
       window.location.reload();
     }
@@ -64,6 +64,9 @@ const PostCardPage = (props) => {
     }
     if(btn == "Analysis") {
       console.log("Analysis");
+      await dispatch(analysisStoryCard(storyCard.id));
+      navigate('/cardpage/result');
+      window.location.reload();
     }
   };
 

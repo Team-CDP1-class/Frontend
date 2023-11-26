@@ -16,6 +16,8 @@ const initialState = {
     characters: "",
     outline: "",
   },
+  analysisStoryCard:"",
+  analysisTreatment:"",
   isLoading: false,
   error: "",
 };
@@ -79,9 +81,12 @@ const cardStorySlice = createSlice({
       })
       .addCase(analysisStoryCard.pending, (state) => {
         state.isLoading = true;
+        toast.info("post card 분석중");
+
       })
-      .addCase(analysisStoryCard.fulfilled, (state) => {
+      .addCase(analysisStoryCard.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.analysisStoryCard=action.payload;
         toast.info("post card 분석성공");
       })
       .addCase(analysisStoryCard.rejected, (state, action) => {
@@ -92,9 +97,12 @@ const cardStorySlice = createSlice({
       })
       .addCase(analysisTreatment.pending, (state) => {
         state.isLoading = true;
+        toast.info("treatment 분석중");
+
       })
-      .addCase(analysisTreatment.fulfilled, (state) => {
+      .addCase(analysisTreatment.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.analysisTreatment=action.payload;
         toast.info("treatment 분석성공");
       })
       .addCase(analysisTreatment.rejected, (state, action) => {

@@ -1,7 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { analysisTreatment } from "../../store/thunkFunction";
+import { useNavigate } from "react-router-dom";
 
 const PostTreatmentPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -9,13 +15,15 @@ const PostTreatmentPage = () => {
     reset,
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = ({ content }) => {
+  const onSubmit = async({ content }) => {
     const body = {
       content,
     };
     console.log(body);
-    //dispatch
+    await dispatch(analysisTreatment(body.content));
     reset();
+    navigate('/treatment/result');
+    window.location.reload();
   };
 
   return (

@@ -47,7 +47,7 @@ function App() {
         <Route element={<ProtectedRoutes isAuth={isAuth} />}>
           <Route path="/element" element={<ElementPage />} />
           <Route path="/cardpage/*" element={<CardPage />} />
-          <Route path="/treatment" element={<TreatmentPage />} />
+          <Route path="/treatment/*" element={<TreatmentPage />} />
         </Route>
         {/* <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} /> */}
