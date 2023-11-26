@@ -59,9 +59,14 @@ const userSlice = createSlice({
         localStorage.removeItem("accessToken");
       })
       .addCase(logoutUser.rejected, (state, action) => {
+        // state.isLoading = false;
+        // state.error = action.payload;
+        // toast.error(action.payload);
         state.isLoading = false;
-        state.error = action.payload;
-        toast.error(action.payload);
+        state.userData = initialState.userData;
+        toast.info("로그아웃 성공함");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
       })
       .addCase(authUser.pending, (state) => {
         state.isLoading = true;
