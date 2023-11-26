@@ -74,7 +74,7 @@ export const getStoryCard = createAsyncThunk("storyCard/getStoryCard", async (_,
   }
 });
 
-export const deleteStoryCard = createAsyncThunk("storyCard/deleteStoryCard", async ({ storyCardId }, thunkAPI) => {
+export const deleteStoryCard = createAsyncThunk("storyCard/deleteStoryCard", async ( storyCardId , thunkAPI) => {
   try {
     const response = await axiosInstance.delete(`api/storycard/${storyCardId}`);
 
@@ -85,9 +85,9 @@ export const deleteStoryCard = createAsyncThunk("storyCard/deleteStoryCard", asy
   }
 });
 
-export const editStoryCard = createAsyncThunk("storyCard/editStoryCard", async ({ storyCardId }, thunkAPI) => {
+export const editStoryCard = createAsyncThunk("storyCard/editStoryCard", async ( storyCardId , body, thunkAPI) => {
   try {
-    const response = await axiosInstance.patch(`api/storycard/${storyCardId}`);
+    const response = await axiosInstance.patch(`api/storycard/${storyCardId}`, body);
 
     return response.data;
   } catch (error) {
