@@ -142,6 +142,7 @@ export const analysisStoryCard = createAsyncThunk("storyCard/analysisStoryCard",
 
 export const analysisTreatment = createAsyncThunk("storyCard/analysisTreatment", async (body, thunkAPI) => {
   try {
+    console.log(body);
     const response = await axiosInstance.post(`api/storyTreatment`, body);
 
     return response.data;

@@ -3,28 +3,32 @@ import ReactDOM from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import NavItem from "./Sections/NavItem";
 import { useDispatch, useSelector } from "react-redux";
+import { getStoryCard } from "../../store/thunkFunction";
 
-function cardNav(len) {
-  if(len == 0) {
-    return (
+const Navbar = () => {
+  const storyCard = useSelector((state) => state.cardStory.storyCardData);
+  const dispatch = useDispatch();
+  let navElement = [];
+
+  const cardNavget = async() => {
+    await dispatch(getStoryCard());
+    window.location.reload();
+  }
+
+  if(storyCard.length == 0) {
+    navElement.push (
     <Link to="/cardpage/postcard">
-          <button className="navbarMenu">스토리 카드</button>
+          <button className="navbarMenu" onClick={cardNavget}>스토리 카드</button>
     </Link>
     );
   }
   else {
-    return (
+    navElement.push (
       <Link to="/cardpage/postcard/0">
-            <button className="navbarMenu">스토리 카드</button>
+            <button className="navbarMenu" onClick={cardNavget}>스토리 카드</button>
       </Link>
       );
   }
-
-
-}
-
-const Navbar = () => {
-  const storyCard = useSelector((state) => state.cardStory.storyCardData);
 
   return (
     <div className="flex navbar">
@@ -34,7 +38,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="float-left">
-        {cardNav(storyCard.length)}
+        {navElement}
       </div>
       <div className="float-left">
         <Link to="./treatment">

@@ -4,6 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import PostTreatmentPage from "./postTreatmentPage";
 import ResultPage from "./resultPage";
+import { useSelector } from "react-redux";
 
 function Layout() {
   return (
@@ -16,6 +17,8 @@ function Layout() {
 }
 
 const TreatmentPage = () => {
+  const treatmentResult = useSelector((state) => state.cardStory.analysisTreatment.result.storyTreatmentAnalysis);
+
   return (
     <Routes>
       {/* 사이드 바 */}
@@ -23,7 +26,7 @@ const TreatmentPage = () => {
         {/* route 중첩 */}
         <Route index element={<PostTreatmentPage />} />
         <Route path="/posttreatment" element={<PostTreatmentPage />} />
-        <Route path="/result" element={<ResultPage />} />
+        <Route path="/result" element={<ResultPage treatmentResult={treatmentResult}/>} />
       </Route>
     </Routes>
   );
