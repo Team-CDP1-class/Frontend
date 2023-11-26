@@ -22,7 +22,7 @@ function Layout() {
 const CardPage = () => {
   const dispatch = useDispatch();
   const storyCard = useSelector((state) => state.cardStory.storyCardData);
-  const cardResult = useSelector((state) => state.cardStory.analysisStoryCard?.result.storyCardAnalysis);
+  const cardResult = useSelector((state) => state.cardStory.analysisStoryCard?.result?.storyCardAnalysis);
   const { pathname } = useLocation();
   const [currentCard, setCurrent] = useState(storyCard);
   const params = useParams();
