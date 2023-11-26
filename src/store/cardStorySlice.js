@@ -34,11 +34,10 @@ const cardStorySlice = createSlice({
       .addCase(getStoryCard.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getStoryCard.fulfilled, (state) => {
+      .addCase(getStoryCard.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.storyCardData = state;
-        console.log(state);
-        toast.info("가져오기 성공");
+        state.storyCardData = action.payload.result;
+        toast.info("post card 가져오기 성공");
       })
       .addCase(getStoryCard.rejected, (state, action) => {
         state.isLoading = false;

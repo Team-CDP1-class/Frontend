@@ -12,9 +12,9 @@ const PostCardPage = () => {
   } = useForm({ mode: "onChange" });
 
   const dispatch = useDispatch();
-  const onSubmit = ({ cardname, premise, setting, characters, outline }) => {
+  const onSubmit = ({ storycard_name, premise, setting, characters, outline }) => {
     const body = {
-      cardname,
+      storycard_name,
       premise,
       setting,
       characters,
@@ -29,9 +29,10 @@ const PostCardPage = () => {
       <div className="card">
         <input
           type="text"
+          id="storycard_name"
           placeholder="제목"
           className="w-11/12 mx-6 outline-none text-large font-bold"
-          {...register("premise")}
+          {...register("storycard_name")}
         />
       </div>
       <div className="card">

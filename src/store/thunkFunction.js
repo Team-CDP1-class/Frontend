@@ -68,7 +68,7 @@ export const postStoryCard = createAsyncThunk("storyCard/postStoryCard", async (
 export const getStoryCard = createAsyncThunk("storyCard/getStoryCard", async (_, thunkAPI) => {
   try {
     const response = await axiosInstance.get(`api/storycard`);
-    console.log(response);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
