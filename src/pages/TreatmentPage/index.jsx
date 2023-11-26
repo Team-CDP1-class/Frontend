@@ -17,7 +17,7 @@ function Layout() {
 }
 
 const TreatmentPage = () => {
-  const treatmentResult = useSelector((state) => state.cardStory.analysisTreatment?.result.storyTreatmentAnalysis);
+  const treatmentResult = useSelector((state) => state.cardStory.analysisTreatment?.result?.storyTreatmentAnalysis);
 
   return (
     <Routes>
