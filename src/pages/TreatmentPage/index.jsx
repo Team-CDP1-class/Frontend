@@ -17,7 +17,7 @@ function Layout() {
 }
 
 const TreatmentPage = () => {
-  const treatmentResult = useSelector((state) => state.cardStory.analysisTreatment.result.storyTreatmentAnalysis);
+  const treatmentResult = useSelector((state) => state.cardStory.analysisTreatment?.result.storyTreatmentAnalysis);
 
   return (
     <Routes>
@@ -26,7 +26,7 @@ const TreatmentPage = () => {
         {/* route 중첩 */}
         <Route index element={<PostTreatmentPage />} />
         <Route path="/posttreatment" element={<PostTreatmentPage />} />
-        <Route path="/result" element={<ResultPage treatmentResult={treatmentResult}/>} />
+        <Route path="/result" element={<ResultPage treatmentResult={treatmentResult} />} />
       </Route>
     </Routes>
   );

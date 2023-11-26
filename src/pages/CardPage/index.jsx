@@ -22,7 +22,7 @@ function Layout() {
 const CardPage = () => {
   const dispatch = useDispatch();
   const storyCard = useSelector((state) => state.cardStory.storyCardData);
-  const cardResult = useSelector((state) => state.cardStory.analysisStoryCard.result.storyCardAnalysis);
+  const cardResult = useSelector((state) => state.cardStory.analysisStoryCard?.result.storyCardAnalysis);
   const { pathname } = useLocation();
   const [currentCard, setCurrent] = useState(storyCard);
   const params = useParams();
@@ -32,8 +32,8 @@ const CardPage = () => {
   // }, [pathname]);
 
   useEffect(() => {
-    if(params['*'] != "postcard") {
-      setCurrent(storyCard[params['*'].split("/")[1]]);
+    if (params["*"] != "postcard") {
+      setCurrent(storyCard[params["*"].split("/")[1]]);
     }
   }, [params, storyCard]);
 
@@ -44,8 +44,8 @@ const CardPage = () => {
         {/* route 중첩 */}
         {/* <Route index element={<MainPage />} /> */}
         <Route path="/postcard" element={<MainPage />} />
-        <Route path="/postcard/:postId" element={<PostCardPage storyCard={currentCard}/>} />
-        <Route path="/result" element={<ResultPage cardReuslt={cardResult}/>} />
+        <Route path="/postcard/:postId" element={<PostCardPage storyCard={currentCard} />} />
+        <Route path="/result" element={<ResultPage cardReuslt={cardResult} />} />
       </Route>
     </Routes>
   );
