@@ -7,7 +7,7 @@ const MainPage = () => {
   const storyCard = useSelector((state) => state.cardStory.storyCardData);
 
   if(storyCard.length > 0) 
-    navigate("/cardpage/postcard/1");
+    navigate("/cardpage/postcard/0");
   else
     return (<div></div>);
   return (

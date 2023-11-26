@@ -149,7 +149,7 @@ const PostCardPage = () => {
             
             <button
               className="button-basic text-white bg-myColors-primary float-right"
-              onClick={handleSubmit}>
+              onClick={handleAnalysis}>
               분석하기
             </button>
           </div>

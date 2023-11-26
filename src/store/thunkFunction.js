@@ -8,7 +8,6 @@ import axiosInstance from "../utils/axios";
 // };
 export const registerUser = createAsyncThunk("user/registerUser", async (body, thunkAPI) => {
   try {
-    console.log(body);
     const response = await axiosInstance.post(`api/users`, body);
     //const response = await axiosInstance.post(`users/register`, body);
 
@@ -48,7 +47,7 @@ export const authUser = createAsyncThunk("user/authUser", async (_, thunkAPI) =>
   //   console.log(error);
   //   return thunkAPI.rejectWithValue(error.response.data || error.message);
   // }
-  console.log(localStorage.getItem("accessToken"));
+  
   // if (localStorage.getItem("accessToken")) {
   //   state.isAuth = true;
   // } else {
@@ -68,7 +67,6 @@ export const postStoryCard = createAsyncThunk("storyCard/postStoryCard", async (
 export const getStoryCard = createAsyncThunk("storyCard/getStoryCard", async (_, thunkAPI) => {
   try {
     const response = await axiosInstance.get(`api/storycard`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
