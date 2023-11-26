@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/thunkFunction";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const {
@@ -11,6 +12,7 @@ const RegisterPage = () => {
     reset,
   } = useForm({ mode: "onChange" });
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSubmit = ({ email, nickname, password, confirmpassword, name, birth }) => {
     if (password !== confirmpassword) {
@@ -23,15 +25,12 @@ const RegisterPage = () => {
       password,
       birth,
     };
-    // body = {
-    //   email: "test8@knu.ac.kr",
-    //   password: "1234",
-    //   nickname: "헤경",
-    //   name: "송혜경",
-    //   birth: "2002-10-31",
-    // };
-
-    dispatch(registerUser(body));
+    dispatch(registerUser(body)).then((res) => {
+      console.log(res.payload.statusCode);
+      if (res.payload.statusCode === "CREATED") {
+        navigate("/login");
+      }
+    });
     reset();
   };
 

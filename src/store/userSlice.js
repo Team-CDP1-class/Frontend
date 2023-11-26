@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authUser, loginUser, logoutUser, registerUser } from "./thunkFunction";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 const initialState = {
   userData: {
     email: "",
@@ -29,7 +31,7 @@ const userSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        toast.error(action.payload);
+        toast.error("이미있는 이메일 입니다.");
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
@@ -46,7 +48,7 @@ const userSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-        toast.error(action.payload);
+        toast.error("login failed");
       })
       .addCase(logoutUser.pending, (state) => {
         state.isLoading = true;
@@ -59,9 +61,14 @@ const userSlice = createSlice({
         localStorage.removeItem("accessToken");
       })
       .addCase(logoutUser.rejected, (state, action) => {
+        // state.isLoading = false;
+        // state.error = action.payload;
+        // toast.error(action.payload);
         state.isLoading = false;
-        state.error = action.payload;
-        toast.error(action.payload);
+        state.userData = initialState.userData;
+        toast.info("로그아웃 성공함");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
       })
       .addCase(authUser.pending, (state) => {
         state.isLoading = true;

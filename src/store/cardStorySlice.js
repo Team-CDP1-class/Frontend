@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { getStoryCard, postStoryCard } from "./thunkFunction";
+import { deleteStoryCard, editStoryCard, getStoryCard, postStoryCard } from "./thunkFunction";
 const initialState = {
   storyCardData: {
     storycardname: "",
@@ -43,6 +43,32 @@ const cardStorySlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
         toast.error(action.payload);
+      })
+      .addCase(deleteStoryCard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteStoryCard.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.info("post card 삭제 성공");
+      })
+      .addCase(deleteStoryCard.rejected, (state, action) => {
+        state.isLoading = false;
+        toast.error("세션이 만료되었습니다");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
+      })
+      .addCase(editStoryCard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editStoryCard.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.info("post card 수정 성공");
+      })
+      .addCase(editStoryCard.rejected, (state, action) => {
+        state.isLoading = false;
+        toast.error("세션이 만료되었습니다");
+        state.isAuth = false;
+        localStorage.removeItem("accessToken");
       });
   },
 });
