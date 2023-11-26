@@ -25,7 +25,7 @@ const CardPage = () => {
   const { pathname } = useLocation();
 
   dispatch(getStoryCard());
-  console.log(storyCard);
+
   return (
     <Routes>
       {/* 사이드 바 */}

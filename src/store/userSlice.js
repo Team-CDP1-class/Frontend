@@ -36,11 +36,12 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action);
+
         state.userData = action.payload;
         toast.info("로그인 성공함");
         state.isAuth = true;
-        localStorage.setItem("accessToken", action.payload.accessToken);
+        // console.log(action.payload.result["access_token"]);
+        localStorage.setItem("accessToken", action.payload.result["access_token"]);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;

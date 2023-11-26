@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { postStoryCard } from "../../store/thunkFunction";
+import { useDispatch } from "react-redux";
 
 const PostCardPage = () => {
   const {
@@ -9,16 +11,16 @@ const PostCardPage = () => {
     reset,
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = ({ cardname, premise, setting, characters, outline }) => {
+  const dispatch = useDispatch();
+  const onSubmit = ({ storycard_name, premise, setting, characters, outline }) => {
     const body = {
-      cardname,
+      storycard_name,
       premise,
       setting,
       characters,
       outline,
     };
-    console.log(body);
-    //dispatch
+    dispatch(postStoryCard(body));
     reset();
   };
 
@@ -27,9 +29,10 @@ const PostCardPage = () => {
       <div className="card">
         <input
           type="text"
+          id="storycard_name"
           placeholder="제목"
           className="w-11/12 mx-6 outline-none text-large font-bold"
-          {...register("premise")}
+          {...register("storycard_name")}
         />
       </div>
       <div className="card">
