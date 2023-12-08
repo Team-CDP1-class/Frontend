@@ -13,7 +13,7 @@ const LandingPage = () => {
         <p>한국어 이야기 작성 방향 탐색 도움 제공</p>
 
         {/* 비회원 -> 로그인/회원가입, 회원 -> 스토리 카드 */}
-        {/* Link 수정 */}
+
         <Link to="/cardpage/postcard">
           <button
             onClick="location.href=''"
@@ -57,7 +57,7 @@ const LandingPage = () => {
             <p className="font-bold">{">"} 스토리 키워드 선별</p>
             <p className="font-bold">{">"} 유사 문학 추천</p>
 
-            <Link to="/cardpage">
+            <Link to="/cardpage/postcard">
               <button
                 className="w-full button-basic text-myColors-primary bg-white
                 border-2 border-myColors-primary mt-5 mb-3 hover:text-white hover:bg-myColors-primary hover:font-bold"
