@@ -13,6 +13,7 @@ const LandingPage = () => {
         <p>한국어 이야기 작성 방향 탐색 도움 제공</p>
 
         {/* 비회원 -> 로그인/회원가입, 회원 -> 스토리 카드 */}
+        {/* Link 수정 */}
         <Link to="/cardpage/postcard">
           <button
             onClick="location.href=''"
